@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChandlerSharpPlus</name>
+    </assembly>
+    <members>
+        <member name="T:ChandlerSharpPlus.ChandlerClient">
+            <summary>
+            Main Client
+            </summary>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.#ctor(System.Uri)">
+            <summary>
+            Client Ctor
+            </summary>
+            <param name="base_uri">The base uri for the instance to get data from</param>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.GetBoardsListAsync">
+            <summary>
+            Get a list of all boards
+            </summary>
+            <returns>Collection of Board Object</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.GetBoardDataAsync(System.String)">
+            <summary>
+            Get data for the given board
+            </summary>
+            <param name="tag">The tag for the board</param>
+            <returns>Board Object</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.GetServerMetaAsync">
+            <summary>
+            Get server meta data
+            </summary>
+            <returns>ServerMeta Object</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.GetThreadsAsync(System.String)">
+            <summary>
+            Gets all threads in a given board
+            </summary>
+            <param name="tag">Board Tag</param>
+            <returns>Collection of Thread Object</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.GetChildPostsAsync(System.Int32)">
+            <summary>
+            Gets all of the child threads from a given thread
+            </summary>
+            <param name="thread_id">Id of the thread to get child threads from</param>
+            <returns>Collection of Thread Object</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.CreatePostAsync(ChandlerSharpPlus.Objects.Thread)">
+            <summary>
+            Creates a post
+            </summary>
+            <param name="thread">Thread Object</param>
+            <returns>True, if successful</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.CreatePostAsync(System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Creates a post
+            </summary>
+            <param name="board_tag">Board's tag</param>
+            <param name="topic">The thread topic</param>
+            <param name="text">Thread Text</param>
+            <param name="username">Username to show</param>
+            <param name="image_url">Image url</param>
+            <param name="parent_id">Id of the parent thread if reply</param>
+            <returns>True, if posted</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.DeletePostAsync(System.String,System.Int32)">
+            <summary>
+            Delete a post
+            </summary>
+            <param name="password">User Password</param>
+            <param name="post_id">Id of the post</param>
+            <returns>Response String</returns>
+        </member>
+    </members>
+</doc>
