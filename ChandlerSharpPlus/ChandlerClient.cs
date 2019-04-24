@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ChandlerSharpPlus
@@ -14,16 +15,16 @@ namespace ChandlerSharpPlus
     {
         private HttpClient _http { get; set; }
 
+        private string _base { get; set; }
+
         /// <summary>
         /// Client Ctor
         /// </summary>
-        /// <param name="base_uri">The base uri for the instance to get data from</param>
-        public ChandlerClient(Uri base_uri)
+        /// <param name="base_url">The base url for the instance to get data from</param>
+        public ChandlerClient(string base_url)
         {
-            this._http = new HttpClient()
-            {
-                BaseAddress = base_uri
-            };
+            this._http = new HttpClient();
+            this._base = base_url;
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace ChandlerSharpPlus
         /// <returns>Collection of Board Object</returns>
         public async Task<IEnumerable<Board>> GetBoardsListAsync()
         {
-            var res = await this._http.GetAsync(new Uri($"{this._http.BaseAddress}/api/board")).ConfigureAwait(false);
+            var res = await this._http.GetAsync(new Uri($"{this._base}/api/board")).ConfigureAwait(false);
             var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
             var data = JsonConvert.DeserializeObject<IEnumerable<Board>>(cont);
             return data;
@@ -45,7 +46,7 @@ namespace ChandlerSharpPlus
         /// <returns>Board Object</returns>
         public async Task<Board> GetBoardDataAsync(string tag)
         {
-            var res = await this._http.GetAsync(new Uri($"{this._http.BaseAddress}/api/board/data?tag={tag}")).ConfigureAwait(false);
+            var res = await this._http.GetAsync(new Uri($"{this._base}/api/board/data?tag={tag}")).ConfigureAwait(false);
             var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
             var data = JsonConvert.DeserializeObject<Board>(cont);
             return data;
@@ -57,7 +58,7 @@ namespace ChandlerSharpPlus
         /// <returns>ServerMeta Object</returns>
         public async Task<ServerMeta> GetServerMetaAsync()
         {
-            var res = await this._http.GetAsync(new Uri($"{this._http.BaseAddress}/api/server")).ConfigureAwait(false);
+            var res = await this._http.GetAsync(new Uri($"{this._base}/api/server")).ConfigureAwait(false);
             var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
             var data = JsonConvert.DeserializeObject<ServerMeta>(cont);
             return data;
@@ -70,7 +71,7 @@ namespace ChandlerSharpPlus
         /// <returns>Collection of Thread Object</returns>
         public async Task<IEnumerable<Thread>> GetThreadsAsync(string tag)
         {
-            var res = await this._http.GetAsync(new Uri($"{this._http.BaseAddress}/api/thread?tag={tag}")).ConfigureAwait(false);
+            var res = await this._http.GetAsync(new Uri($"{this._base}/api/thread?tag={tag}")).ConfigureAwait(false);
             var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
             var data = JsonConvert.DeserializeObject<IEnumerable<Thread>>(cont);
             return data;
@@ -83,7 +84,7 @@ namespace ChandlerSharpPlus
         /// <returns>Collection of Thread Object</returns>
         public async Task<IEnumerable<Thread>> GetChildPostsAsync(int thread_id = -1)
         {
-            var res = await this._http.GetAsync(new Uri($"{this._http.BaseAddress}/api/post?thread={thread_id}")).ConfigureAwait(false);
+            var res = await this._http.GetAsync(new Uri($"{this._base}/api/post?thread={thread_id}")).ConfigureAwait(false);
             var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
             var data = JsonConvert.DeserializeObject<IEnumerable<Thread>>(cont);
             return data;
@@ -96,7 +97,9 @@ namespace ChandlerSharpPlus
         /// <returns>True, if successful</returns>
         public async Task<bool> CreatePostAsync(Thread thread)
         {
-            var res = await this._http.PostAsync(new Uri($"{this._http.BaseAddress}/api/create"), new StringContent(JsonConvert.SerializeObject(thread))).ConfigureAwait(false);
+            var res = await this._http.PostAsync(new Uri($"{this._base}/api/thread/create"), new StringContent(JsonConvert.SerializeObject(thread), Encoding.UTF8, "application/json")).ConfigureAwait(false);
+            var cont = await res.Content.ReadAsStringAsync();
+            var reqcont = JsonConvert.SerializeObject(thread);
             return res.IsSuccessStatusCode;
         }
 
@@ -110,16 +113,16 @@ namespace ChandlerSharpPlus
         /// <param name="image_url">Image url</param>
         /// <param name="parent_id">Id of the parent thread if reply</param>
         /// <returns>True, if posted</returns>
-        public async Task<bool> CreatePostAsync(string board_tag, string topic, string text, string username = "Anonymous", string image_url = null, int parent_id = -1)
+        public async Task<bool> CreatePostAsync(string board_tag, string topic, string text, string username = "Anonymous", string image_url = null, string password = null, int parent_id = -1)
         {
             var thread = new Thread()
             {
-                BoardTag = board_tag,
-                Image = image_url,
-                Topic = topic,
-                Text = text,
-                Username = username,
-                ParentId = parent_id
+                BoardTag = board_tag,//
+                Image = image_url,//
+                Topic = topic,//
+                Text = text,//
+                Username = username,//
+                ParentId = parent_id//
             };
             return await this.CreatePostAsync(thread).ConfigureAwait(false);
         }
@@ -132,7 +135,7 @@ namespace ChandlerSharpPlus
         /// <returns>Response String</returns>
         public async Task<string> DeletePostAsync(string password, int post_id = -1)
         {
-            var req = new HttpRequestMessage(HttpMethod.Delete, new Uri($"{this._http.BaseAddress}/api/delete?postid={post_id}"))
+            var req = new HttpRequestMessage(HttpMethod.Delete, new Uri($"{this._base}/api/delete?postid={post_id}"))
             {
                 Content = new StringContent(string.Concat(@"{""pass"":", password, @"""}"))
             };

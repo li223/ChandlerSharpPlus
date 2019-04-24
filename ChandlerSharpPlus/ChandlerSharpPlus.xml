@@ -9,11 +9,11 @@
             Main Client
             </summary>
         </member>
-        <member name="M:ChandlerSharpPlus.ChandlerClient.#ctor(System.Uri)">
+        <member name="M:ChandlerSharpPlus.ChandlerClient.#ctor(System.String)">
             <summary>
             Client Ctor
             </summary>
-            <param name="base_uri">The base uri for the instance to get data from</param>
+            <param name="base_url">The base url for the instance to get data from</param>
         </member>
         <member name="M:ChandlerSharpPlus.ChandlerClient.GetBoardsListAsync">
             <summary>
