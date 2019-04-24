@@ -55,7 +55,7 @@
             <param name="thread">Thread Object</param>
             <returns>True, if successful</returns>
         </member>
-        <member name="M:ChandlerSharpPlus.ChandlerClient.CreatePostAsync(System.String,System.String,System.String,System.String,System.String,System.Int32)">
+        <member name="M:ChandlerSharpPlus.ChandlerClient.CreatePostAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
             <summary>
             Creates a post
             </summary>
@@ -74,6 +74,101 @@
             <param name="password">User Password</param>
             <param name="post_id">Id of the post</param>
             <returns>Response String</returns>
+        </member>
+        <member name="T:ChandlerSharpPlus.Objects.Board">
+            <summary>
+            Board Object
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Board.Tag">
+            <summary>
+            Board's tag
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Board.Name">
+            <summary>
+            Board's name
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Board.Description">
+            <summary>
+            Board Description
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Board.ImageUri">
+            <summary>
+            Board Image Uri
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Board.MessageOfTheDay">
+            <summary>
+            Board's message of the day
+            </summary>
+        </member>
+        <member name="T:ChandlerSharpPlus.Objects.ServerMeta">
+            <summary>
+            Server Meta Object
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.ServerMeta.StartTime">
+            <summary>
+            Server Start Time
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.ServerMeta.Uptime">
+            <summary>
+            Server uptime
+            </summary>
+        </member>
+        <member name="T:ChandlerSharpPlus.Objects.Thread">
+            <summary>
+            Thread Object
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Id">
+            <summary>
+            Thread Id
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.ParentId">
+            <summary>
+            Parent Thread Id, -1 if Original Post
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.BoardTag">
+            <summary>
+            Tag for the board this thread belongs to
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Image">
+            <summary>
+            Image for the post, if any
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Username">
+            <summary>
+            Given username of the OP, defaults to "Anonymous"
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Topic">
+            <summary>
+            Thread topic
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Text">
+            <summary>
+            Post text
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Ip">
+            <summary>
+            IP of the poster?
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.Objects.Thread.Password">
+            <summary>
+            Password to be used to later delete the thread
+            </summary>
         </member>
     </members>
 </doc>

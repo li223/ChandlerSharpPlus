@@ -111,18 +111,19 @@ namespace ChandlerSharpPlus
         /// <param name="text">Thread Text</param>
         /// <param name="username">Username to show</param>
         /// <param name="image_url">Image url</param>
+        /// <param name="password">Password required to delete the post</param>
         /// <param name="parent_id">Id of the parent thread if reply</param>
         /// <returns>True, if posted</returns>
         public async Task<bool> CreatePostAsync(string board_tag, string topic, string text, string username = "Anonymous", string image_url = null, string password = null, int parent_id = -1)
         {
             var thread = new Thread()
             {
-                BoardTag = board_tag,//
-                Image = image_url,//
-                Topic = topic,//
-                Text = text,//
-                Username = username,//
-                ParentId = parent_id//
+                BoardTag = board_tag,
+                Image = image_url,
+                Topic = topic,
+                Text = text,
+                Username = username,
+                ParentId = parent_id
             };
             return await this.CreatePostAsync(thread).ConfigureAwait(false);
         }
