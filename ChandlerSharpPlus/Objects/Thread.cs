@@ -59,6 +59,6 @@ namespace ChandlerSharpPlus.Objects
         /// Password to be used to later delete the thread
         /// </summary>
         [JsonProperty("generatepass")]
-        public string Password { get; private set; } = "";
+        public string Password { get; set; }
     }
 }
