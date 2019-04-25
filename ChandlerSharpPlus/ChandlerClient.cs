@@ -51,7 +51,7 @@ namespace ChandlerSharpPlus
             var data = JsonConvert.DeserializeObject<Board>(cont);
             return data;
         }
-        
+
         /// <summary>
         /// Get server meta data
         /// </summary>
@@ -126,7 +126,7 @@ namespace ChandlerSharpPlus
             };
             return await this.CreatePostAsync(thread).ConfigureAwait(false);
         }
-        
+
         /// <summary>
         /// Delete a post
         /// </summary>
