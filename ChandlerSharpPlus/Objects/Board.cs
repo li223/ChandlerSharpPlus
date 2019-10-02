@@ -12,7 +12,7 @@ namespace ChandlerSharpPlus.Objects
         /// Board's tag
         /// </summary>
         [JsonProperty("tag")]
-        public char Tag { get; private set; }
+        public string Tag { get; private set; }
 
         /// <summary>
         /// Board's name

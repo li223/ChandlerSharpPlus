@@ -140,8 +140,45 @@ namespace ChandlerSharpPlus
                 Content = new StringContent(string.Concat(@"{""pass"":", password, @"""}"))
             };
             var res = await this.Http.SendAsync(req).ConfigureAwait(false);
-            var cont = await res.Content.ReadAsStringAsync();
+            var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false); ;
             return cont;
+        }
+
+        /// <summary>
+        /// Subscribe a webhook to a board or thread
+        /// </summary>
+        /// <param name="wh_url">The url of the webhook</param>
+        /// <param name="secret">Secret password to generate the hash on</param>
+        /// <param name="board_tag">The tag of the board to subscribe to</param>
+        /// <param name="thread_id">The id of the thread to subscribe to</param>
+        /// <returns>Data on the webhook</returns>        
+        public async Task<WebhookData> SubscribeWebhookAsync(string wh_url, string secret, string board_tag = null, int? thread_id = null)
+        {
+            if (board_tag == null && thread_id == null) throw new ArgumentNullException("Board tag or Thread Id are required to subscribe a webhook to");
+            if (board_tag != null)
+            {
+                var res = await Http.GetAsync(new Uri($"{Base}/api/webhooks/subscribe?url={wh_url}&secret={secret}&boardtag={board_tag}")).ConfigureAwait(false); ;
+                var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<WebhookData>(cont);
+            }
+            else
+            {
+                var res = await Http.GetAsync(new Uri($"{Base}/api/webhooks/subscribe?url={wh_url}&secret={secret}&threadid={thread_id}")).ConfigureAwait(false);
+                var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<WebhookData>(cont);
+            }
+        }
+
+        /// <summary>
+        /// Unsubscribe a subscribed webhook
+        /// </summary>
+        /// <param name="secret">The secret</param>
+        /// <returns>True, if successfully unsubscribed the webhook</returns>
+        public async Task<bool> UnsubscribeWebhookAsync(string secret)
+        {
+            var res = await Http.GetAsync(new Uri($"{Base}/api/webhooks/unsubscribe?secret={secret}")).ConfigureAwait(false);
+            var cont = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return bool.Parse(cont);
         }
     }
 }

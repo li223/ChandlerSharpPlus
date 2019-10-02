@@ -64,6 +64,7 @@
             <param name="text">Thread Text</param>
             <param name="username">Username to show</param>
             <param name="image_url">Image url</param>
+            <param name="password">Password required to delete the post</param>
             <param name="parent_id">Id of the parent thread if reply</param>
             <returns>True, if posted</returns>
         </member>
@@ -74,6 +75,23 @@
             <param name="password">User Password</param>
             <param name="post_id">Id of the post</param>
             <returns>Response String</returns>
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.SubscribeWebhookAsync(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Subscribe a webhook to a board or thread
+            </summary>
+            <param name="wh_url">The url of the webhook</param>
+            <param name="secret">Secret password to generate the hash on</param>
+            <param name="board_tag">The tag of the board to subscribe to</param>
+            <param name="thread_id">The id of the thread to subscribe to</param>
+            <returns>Data on the webhook</returns>        
+        </member>
+        <member name="M:ChandlerSharpPlus.ChandlerClient.UnsubscribeWebhookAsync(System.String)">
+            <summary>
+            Unsubscribe a subscribed webhook
+            </summary>
+            <param name="secret">The secret</param>
+            <returns>True, if successfully unsubscribed the webhook</returns>
         </member>
         <member name="T:ChandlerSharpPlus.Objects.Board">
             <summary>
@@ -168,6 +186,41 @@
         <member name="P:ChandlerSharpPlus.Objects.Thread.Password">
             <summary>
             Password to be used to later delete the thread
+            </summary>
+        </member>
+        <member name="T:ChandlerSharpPlus.WebhookData">
+            <summary>
+            Data returned when you subscribe a webhook
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.WebhookData.Id">
+            <summary>
+            Webhook Id
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.WebhookData.Url">
+            <summary>
+            Webhook Url
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.WebhookData.BoardTag">
+            <summary>
+            Board tag you subscribed to
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.WebhookData.ThreadId">
+            <summary>
+            Id of the thread you subscribed to
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.WebhookData.HashSecret">
+            <summary>
+            The hashed secret. You will need this to unsubscribe the webhook
+            </summary>
+        </member>
+        <member name="P:ChandlerSharpPlus.WebhookData.HashCycles">
+            <summary>
+            Number of cycles of the hash
             </summary>
         </member>
     </members>
