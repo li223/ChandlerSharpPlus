@@ -9,6 +9,11 @@
             Main Client
             </summary>
         </member>
+        <member name="P:ChandlerSharpPlus.ChandlerClient.BaseUrl">
+            <summary>
+            The base url of the server you want to get data from
+            </summary>
+        </member>
         <member name="M:ChandlerSharpPlus.ChandlerClient.#ctor(System.String)">
             <summary>
             Client Ctor

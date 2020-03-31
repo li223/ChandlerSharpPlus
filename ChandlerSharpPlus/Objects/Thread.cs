@@ -5,7 +5,7 @@ namespace ChandlerSharpPlus.Objects
     /// <summary>
     /// Thread Object
     /// </summary>
-    public sealed class Thread
+    public class Thread
     {
         /// <summary>
         /// Thread Id

@@ -6,7 +6,7 @@ namespace ChandlerSharpPlus.Objects
     /// <summary>
     /// Board Object
     /// </summary>
-    public struct Board
+    public class Board
     {
         /// <summary>
         /// Board's tag

@@ -1,7 +1,7 @@
 # ChandlerSharpPlus
-I dont even know at this point. [Naam made a thing](https://github.com/NaamloosDT/CHANdler) so I made a thing for [his thing](https://github.com/NaamloosDT/CHANdler) so now it's a clusterfuck of things. 
+I dont even know at this point. [Naam made a thing](https://github.com/Naamloos/CHANdler) so I made a thing for [his thing](https://github.com/Naamloos/CHANdler) so now it's a clusterfuck of things. 
 
-My personal fork if you want ~~broken~~ fresh updates -> [Li223 Chandler](https://github.com/li223/Chandler)
+The main repo can be found at: https://github.com/Naamloos/CHANdler
 
 # Example
 ```cs
@@ -11,7 +11,7 @@ static async Task Main(string[] args)
   var client = new ChandlerClient("SERVER BASE URL");
 
   //Create a thread
-  var res = await client.CreatePostAsync("b", "Test Topic", "This is a test");
+  await client.CreatePostAsync("b", "Test Topic", "This is a test");
 
   //Get all posts from the board
   var data = await client.GetThreadsAsync("b");
